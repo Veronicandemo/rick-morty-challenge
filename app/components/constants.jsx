@@ -1,21 +1,24 @@
-import { Icon } from "@iconify/react";
+import { GiPlagueDoctorProfile } from "react-icons/gi";
+import { PiFilmSlateBold } from "react-icons/pi";
+import { FaMapLocationDot } from "react-icons/fa6";
+
 
 export const SIDEBAR_ITEMS = [
   {
     title: "Characters",
     path: "/",
-    icon: <Icon icon="lucide:home" width="24" height="24" />,
+    icon: <GiPlagueDoctorProfile fontSize='3em'/>,
   },
   {
     title: "Location",
     path: "/location",
-    icon: <Icon icon="lucide:folder" width="24" height="24" />,
+    icon: <FaMapLocationDot fontSize='3em'/>
 
   },
   {
     title: "Episodes",
     path: "/episodes",
-    icon: <Icon icon="lucide:mail" width="24" height="24" />,
+    icon: <PiFilmSlateBold fontSize='3em'/>
   },
  
 ];
