@@ -15,10 +15,12 @@ const Card = ({ results }) => {
               #{id}
             </div>
             <div className="overflow-hidden">
-              <Image
+              <img
                 className="w-full h-[220px] object-cover hover:scale-[1.25] transition-[.6s] duration-[.6s] brightness-[.9]"
                 src={image}
                 alt=""
+                width={100}
+                height={100}
               />
             </div>
             <div className="p-[.5rem] flex flex-col gap-[.5rem]">

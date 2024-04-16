@@ -1,4 +1,3 @@
-import { PaginationProps } from '@/types/types';
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
@@ -23,14 +22,14 @@ const Pagination = ({ pageNumber, info, setPageNumber }) => {
         nextLabel="Next"
         forcePage={pageNumber === 1 ? 0 : pageNumber - 1}
         previousLabel="Prev"
-        previousClassName="bg-[#ecd06f] text-white border-2 border-gray-300 bg-white text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center"
-        nextClassName="bg-[#ecd06f] text-white border-2 border-gray-300 bg-white text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center"
-        activeClassName="bg-[#ecd06f] text-white border-2 border-gray-300 bg-white text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center hover:bg-[#ecd06f]"
+        previousClassName="bg-[#01AFCA] text-[#fff] border-2 border-gray-300 bg-[#fff] text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center"
+        nextClassName="bg-[#01AFCA] text-[#fff] border-2 border-gray-300 bg-[#fff] text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center"
+        activeClassName="bg-[#01AFCA] text-[#fff] border-2 border-gray-300 bg-[#fff] text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center hover:bg-[#01AFCA]"
         marginPagesDisplayed={width < 576 ? 1 : 2}
         pageRangeDisplayed={width < 576 ? 1 : 2}
         pageCount={info?.pages || 1}
         onPageChange={pageChange}
-        pageClassName="border-2 border-gray-300 bg-white text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center hover:bg-[gray]"
+        pageClassName="border-2 border-gray-300 bg-[#fff] text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center hover:bg-[#01AFCA]"
         pageLinkClassName="text-center w-[2.5rem] h-[2.5rem] rounded-[50%] flex justify-center items-center"
       />
     </div>

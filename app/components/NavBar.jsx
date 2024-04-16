@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const NavBar = () => {
   return (
-    <div className='bg-[#01AFCA] h-28 text-white'>
+    <div className='bg-[#01AFCA] rounded-b-2xl h-28 text-white'>
     <nav>
         <ul className='flex justify-evenly  text-white'>
             {SIDEBAR_ITEMS.map(item => (

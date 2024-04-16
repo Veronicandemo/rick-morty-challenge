@@ -1,15 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import Card from '@/components/card/Card'
-import Filter from '@/components/filter/Filter'
-import Footer from '@/components/footer/Footer'
-import Loading from '@/components/loading/Loading'
-import Search from '@/components/search/Search'
-import logo from '@/public/assets/logo.png'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
-import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import Card from './card/Card'
+import Filter from './filter/Filter'
+import Loading from './loading/Loading'
+import Search from './search/Search'
 
 const Pagination = dynamic(() => import('@/app/components/pagination/Pagination'), {
   ssr: false
@@ -43,22 +39,10 @@ const  Characters = () => {
   return (
     <main className="h-full">
       <div className="container flex flex-col gap-[1rem]">
-        <div className="h-[200px] relative">
-          <Link href="/">
-            <Image
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-              src={logo}
-              width={400}
-              height={400}
-              alt=""
-              priority
-            />
-          </Link>
-        </div>
         <div className="flex flex-col gap-[1rem] pb-[2rem]">
           <div className="bg-[#F3F4F6] rounded-lg p-[1rem] flex flex-col justify-between items-center gap-[1rem] sm:flex-row">
             <Search setSearch={setSearch} setPageNumber={setPageNumber} />
-            <div className="flex gap-[1rem]">
+            <div className="flex gap-[1rem] text-xl font-medium text-[#01AFCA]">
               {info && info.count ? <>{info.count}</> : '0'} Characters
             </div>
           </div>
@@ -90,7 +74,6 @@ const  Characters = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   )
 }
