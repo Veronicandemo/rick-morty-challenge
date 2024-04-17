@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
@@ -7,11 +6,13 @@ import Filter from './filter/Filter'
 import Loading from './loading/Loading'
 import Search from './search/Search'
 
+// Import Pagination component dynamically to disable server-side rendering
 const Pagination = dynamic(() => import('@/app/components/pagination/Pagination'), {
   ssr: false
 })
 
-const  Characters = () => {
+const Characters = () => {
+  // Initialize state variables
   const [pageNumber, setPageNumber] = useState(1)
   const [status, setStatus] = useState('')
   const [gender, setGender] = useState('')
@@ -22,15 +23,19 @@ const  Characters = () => {
     results: []
   })
   const [search, setSearch] = useState('')
+
+  // Destructure info and results from fetchedData state
   const { info, results } = fetchedData
 
+  // Define the API endpoint with query parameters
   const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`
 
+  // useEffect hook to fetch data when API endpoint changes
   useEffect(() => {
     setLoading(true)
     fetch(api)
-      .then(res => res.json())
-      .then(data => {
+     .then(res => res.json())
+     .then(data => {
         setFetchedData(data)
         setLoading(false)
       })
@@ -43,7 +48,7 @@ const  Characters = () => {
           <div className="bg-[#F3F4F6] rounded-lg p-[1rem] flex flex-col justify-between items-center gap-[1rem] sm:flex-row">
             <Search setSearch={setSearch} setPageNumber={setPageNumber} />
             <div className="flex gap-[1rem] text-xl font-medium text-[#01AFCA]">
-              {info && info.count ? <>{info.count}</> : '0'} Characters
+              {info && info.count? <>{info.count}</> : '0'} Characters
             </div>
           </div>
           <div className="grid gap-[1rem] sm:grid-cols-[.5fr_1.5fr]">
@@ -57,7 +62,7 @@ const  Characters = () => {
             </div>
             <div className="flex flex-col gap-[1rem]">
               <div className="bg-[#F3F4F6] rounded-lg p-[1rem] grid gap-[2rem]">
-                {loading ? (
+                {loading? (
                   <div className="m-auto">
                     <Loading />
                   </div>

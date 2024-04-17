@@ -1,7 +1,18 @@
+'use client'
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
+import CharacterOverlay from '../CharacterDetails';
 
 const Card = ({ results }) => {
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  const openOverlay = (character) => {
+    setSelectedCharacter(character);
+  };
+
+  const closeOverlay = () => {
+    setSelectedCharacter(null);
+  };
   let display;
 
   if (results) {
@@ -9,8 +20,8 @@ const Card = ({ results }) => {
       const { id, name, status, species, gender, origin, location, image } = x;
 
       return (
-        <div key={id} className="relative">
-          <div className="flex flex-col gap-[.6rem] bg-white rounded-lg overflow-hidden md:flex-row">
+        <div key={id} className="relative" onClick={() => openOverlay(x)}>
+          <div className="flex flex-col gap-[.6rem] bg-white rounded-lg overflow-hidden md:flex-row" >
             <div className="hidden absolute right-[10px] top-1/2 transform -translate-y-1/2 text-[120px] opacity-[.2] md:block">
               #{id}
             </div>
@@ -87,7 +98,12 @@ const Card = ({ results }) => {
     display = 'No Characters Found :/';
   }
 
-  return <>{display}</>;
+  return (
+    <>
+      {display}
+      {selectedCharacter && <CharacterOverlay character={selectedCharacter} onClose={closeOverlay} />}
+    </>
+  );
 };
 
 export default Card;

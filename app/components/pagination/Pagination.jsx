@@ -1,12 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
+/**
+ * This component is a pagination component that uses the ReactPaginate library.
+ * It receives the current page number, information about the data being paginated,
+ * and a function to update the current page number as props.
+ */
 const Pagination = ({ pageNumber, info, setPageNumber }) => {
+   /**
+   * This function is called when the user clicks on a page number or the next/previous
+   * buttons. It updates the current page number and calls the setPageNumber function
+   * passed in as a prop.
+   */
   const pageChange = (data) => {
     setPageNumber(data.selected + 1);
   };
-
+ /**
+   * This state variable stores the current width of the window. It is used to determine
+   * how many page numbers to display at a time.
+   */
   const [width, setWidth] = useState(window.innerWidth);
+   /**
+   * This function is called whenever the window is resized. It updates the width state
+   * variable to the current width of the window.
+   */
   const updateDimensions = () => {
     setWidth(window.innerWidth);
   };

@@ -1,46 +1,46 @@
-'use client'
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { MdClose } from "react-icons/md";
 
-const CharacterDetails = ({ characterId }) => {
-  const [character, setCharacter] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState('');
+// Component that displays character details in an overlay
+const CharacterOverlay = ({ character, onClose }) => {
+  const { id, name, status, species, gender, origin, location, image, episode } = character;
+  // Function to extract episode numbers from URLs
+  const getEpisodeNumber = (url) => {
+    const parts = url.split('/');
+    return parts[parts.length - 1]; // Return the last part of the URL
+  };
+   // Get the last three episodes
+   const lastThreeEpisodes = episode.slice(-3).map(getEpisodeNumber);
 
-  useEffect(() => {
-    const fetchCharacterDetails = async () => {
-      try {
-        const response = await fetch(`https://rickandmortyapi.com/api/character/${characterId}`);
-        const data = await response.json();
-        setCharacter(data);
-        setBackgroundColor(`bg-${Math.floor(Math.random() * 9) + 1}00`);
-      } catch (error) {
-        console.error('Error fetching character details:', error);
-      }
-    };
-
-    fetchCharacterDetails();
-  }, [characterId]);
-
-  if (!character) {
-    return <div className="text-center py-4">Loading...</div>;
-  }
-
-  const { name, status, species, gender, origin, location, image, episode } = character;
 
   return (
-    <div className={`p-6 rounded-lg shadow-md ${backgroundColor}`}>
-      <Image className="w-32 h-32 rounded-full mx-auto mb-4" src={image} alt={name} />
-      <div className="text-center">
-        <p className="text-lg font-bold">{name}</p>
-        <p>Status: {status}</p>
-        <p>Species: {species}</p>
-        <p>Gender: {gender}</p>
-        <p>Origin: {origin.name}</p>
-        <p>Location: {location.name}</p>
-        <p>First Episode: {episode[0]?.name}</p>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={onClose}>
+      <div className="bg-white hover:bg-blend-darken p-8 max-w-lg rounded-lg overflow-hidden">
+        <button className="absolute z-50 top-0 right-0 m-4 text-black￼ hover:text-gray-700" onClick={onClose}>
+        <MdClose fontSize='3em' />
+        </button>
+        <div className="text-center">
+          <img src={image} alt={name} className="mx-auto lg:w-58 lg:h-58 sm:w:30 sm:h:30 rounded-full" />
+          <h2 className="text-xl text-[#fff] bg-[#03B3EE] bg-opacity-90 h-10 flex items-center justify-center w-[60%] rounded-2xl font-bold mt-4">{name}</h2>
+         
+        </div>
+        <div  className="text-[#03B3EE] rounded-2xl mt-6">
+          <p ><span className="font-semibold">Status:</span> {status}</p>
+          <p ><span className="font-semibold">Last Known Location:</span> {location?.name}</p>
+          <p ><span className="font-semibold">Origin:</span> {origin?.name}</p>
+          <p className="font-bold">{species} | {gender}</p>
+          <div>
+            <p className="font-semibold">Episodes:</p>
+              {lastThreeEpisodes.map((ep, index) => (
+                <span className='mr-[2px]' key={index}>{ep}</span>
+              ))}
+            </div>
+        </div>
+
       </div>
     </div>
   );
 };
 
-export default CharacterDetails;
+export default CharacterOverlay;

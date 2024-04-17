@@ -1,19 +1,19 @@
 // gender
-export const genders = ['female', 'male', 'genderless', 'unknown']
+export const genders = ['male', 'female',  'unknown', 'genderless']
 
 // species
 export const species = [
   'Human',
   'Alien',
-  'Humanoid',
-  'Poopybutthole',
-  'Mythological',
-  'Unknown',
-  'Animal',
-  'Disease',
   'Robot',
+  'Animal',
+  'Planet',
+  'Disease',
+  'Unknown',
+  'Humanoid',
   'Cronenberg',
-  'Planet'
+  'Mythological',
+  'Poopybutthole',
 ]
 
 // status
